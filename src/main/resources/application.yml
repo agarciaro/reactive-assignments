@@ -1,0 +1,18 @@
+server:
+  port: 7070
+
+spring:
+  application:
+    name: external-service
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    com.curso.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG 
