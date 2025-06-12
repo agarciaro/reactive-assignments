@@ -154,6 +154,7 @@ public class TransactionService {
      */
     private Mono<Transaction> createTransaction(TransferRequestDTO transferRequest) {
         Transaction transaction = Transaction.builder()
+//        	.id(UUID.randomUUID())
             .fromAccountId(transferRequest.getFromAccountId())
             .toAccountId(transferRequest.getToAccountId())
             .amount(transferRequest.getAmount())

@@ -14,7 +14,7 @@ CREATE TABLE accounts (
 
 -- Crear tabla de transacciones
 CREATE TABLE transactions (
-    id UUID PRIMARY KEY,
+    id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
     from_account_id UUID NOT NULL,
     to_account_id UUID NOT NULL,
     amount DECIMAL(15,2) NOT NULL,

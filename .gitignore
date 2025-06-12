@@ -3,3 +3,5 @@
 .project
 /.settings
 /target
+/banking-service/.settings
+/banking-service/target
