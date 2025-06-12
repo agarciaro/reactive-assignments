@@ -5,3 +5,5 @@
 /target
 /banking-service/.settings
 /banking-service/target
+/external-service/.settings
+/external-service/target
