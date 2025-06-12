@@ -20,7 +20,7 @@ public class Demo01Controller {
             operationId = "getProduct_2"
     )
     public Mono<String> getProduct(@PathVariable int id) {
-        if (id <= 0 || id > 100) {
+        if (id <= 0 || id > 1000) {
             return Mono.error(new IllegalArgumentException("Product ID must be between 1 and 100"));
         }
         

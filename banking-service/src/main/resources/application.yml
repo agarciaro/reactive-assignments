@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: reactive-banking-service
+  
+  # Configuración R2DBC
+  r2dbc:
+    url: r2dbc:h2:mem:///bankingdb?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  
+  # Configuración H2 Console (solo para desarrollo)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # SQL Initialization
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+      mode: always
+
+# Configuración del servidor
+server:
+  port: 8080
+  netty:
+    connection-timeout: 30000  # Connection timeout in milliseconds
+    idle-timeout: 60000        # Idle timeout in milliseconds
+
+# Configuración de Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Configuración de logging
+logging:
+  level:
+    com.curso.reactivebanking: DEBUG
+    org.springframework.r2dbc: DEBUG
+    io.r2dbc.h2: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Configuración específica de la aplicación
+banking:
+  fraud:
+    high-amount-threshold: 5000.00
+    max-transactions-per-minute: 3
+    suspicious-hours:
+      start: 22
+      end: 6 

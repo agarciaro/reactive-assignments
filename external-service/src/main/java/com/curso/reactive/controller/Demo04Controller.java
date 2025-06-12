@@ -33,8 +33,8 @@ public class Demo04Controller {
                 .map(i -> {
                     String product = PRODUCTS[random.nextInt(PRODUCTS.length)];
                     int quantity = 1 + random.nextInt(5);
-                    int orderId = 1000 + random.nextInt(9000);
-                    return "Order " + orderId + ": " + quantity + "x " + product;
+                    int price = 10 + random.nextInt(2000);
+                    return product + ":" + price + ":" + quantity;
                 })
                 .take(30); // Stream for 30 seconds
     }

@@ -53,7 +53,7 @@ public class Demo03Controller {
         return Mono.just("Product " + id)
                 .delayElement(Duration.ofSeconds(3))
                 .timeout(Duration.ofSeconds(1))
-                .onErrorReturn("Timeout Fallback Product " + id);
+                .onErrorResume(e -> Mono.empty());
     }
 
     @GetMapping("/empty-fallback/product/{id}")

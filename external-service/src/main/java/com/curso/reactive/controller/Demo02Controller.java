@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.Random;
 
@@ -22,8 +23,10 @@ public class Demo02Controller {
     };
     
     private final Random random = new Random();
+    
+    private final SecureRandom secureRandom = new SecureRandom();
 
-    @GetMapping(value = "/name/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/name/stream")
     @Operation(
             summary = "Streaming Service",
             description = "Generates random first names every 500 ms!\n",
@@ -35,7 +38,7 @@ public class Demo02Controller {
                 .take(40); // Stream for 20 seconds (40 * 500ms)
     }
 
-    @GetMapping(value = "/stock/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/stock/stream")
     @Operation(
             summary = "Assignment: Stock Service",
             description = "Sends stock price to the observer periodically!\n" +
@@ -45,7 +48,7 @@ public class Demo02Controller {
     public Flux<String> stockStream() {
         return Flux.interval(Duration.ofMillis(500))
                 .map(i -> {
-                    int price = 80 + random.nextInt(41); // Random between 80-120
+                    int price = 120 + secureRandom.nextInt(51); // Random between 80-120
                     return String.valueOf(price); // Retorna solo el precio como string
                 })
                 .take(40) // Stream for 20 seconds (40 * 500ms)
